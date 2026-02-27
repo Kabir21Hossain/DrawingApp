@@ -5,13 +5,20 @@ const ctx=canvas.getContext('2d');
 function resizeCanvas(){
     // preserve current drawing
     const backup=canvas.toDataURL();
-    // compute new pixel sizes based on window
-    canvas.width = Math.min(window.innerWidth * 0.95, 900);
-    canvas.height = Math.min(window.innerHeight * 0.7, 500);
+    // set pixel buffer size to match CSS layout width/height for crisp drawing
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+
+    // scale context to handle high-DPI
+    ctx.scale(ratio, ratio);
+
     const img=new Image();
     img.src=backup;
     img.onload=()=>{
         ctx.clearRect(0,0,canvas.width,canvas.height);
+        // draw at scaled size
         ctx.drawImage(img,0,0,canvas.width,canvas.height);
     };
 }
