@@ -77,6 +77,15 @@ canvas{
     margin: 0 auto;
 }
 
+/* fallback for browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 1) {
+    canvas {
+        height: 0;                   /* remove default height
+                                       we'll use padding-bottom hack to enforce ratio */
+        padding-bottom: 110%;        /* 10/9 ≈ 111%, close enough for doubling height */
+    }
+}
+
 /* toolbar adjustments */
 .toolbar{
     display:flex;
