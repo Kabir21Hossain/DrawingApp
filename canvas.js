@@ -168,9 +168,20 @@ clearBtn.addEventListener('click',()=>{
 });
 
 downloadBtn.addEventListener('click',()=>{
+    const dataURL = canvas.toDataURL('image/png');
+    // Android/iOS often navigate to data URLs instead of downloading, so open in new tab
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(isMobile){
+        window.open(dataURL, '_blank');
+        return;
+    }
+
     const link=document.createElement('a');
     link.download='drawing.png';
-    link.href=canvas.toDataURL('image/png');
+    link.href=dataURL;
+    // Firefox requires the link to be in the DOM
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 });
 
