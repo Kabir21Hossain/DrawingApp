@@ -68,4 +68,10 @@ canvas{
     cursor:crosshair;
     touch-action: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    width: 95%;           /* fill available width */
+    max-width: 900px;
+    height: auto;         /* keep aspect ratio */
+    display: block;
+    margin: 0 auto;
 }
