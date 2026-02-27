@@ -71,6 +71,7 @@ canvas{
 
     width: 100%;            /* fill parent container - works on all devices */
     max-width: 1200px;      /* desktop max width */
+    aspect-ratio: 9 / 10;   /* taller canvas: height twice previous (900×500 -> 9:10) */
     height: auto;           /* maintain aspect ratio */
     display: block;
     margin: 0 auto;
