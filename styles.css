@@ -69,9 +69,36 @@ canvas{
     touch-action: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-    width: 100vw;           /* full viewport width */
-    max-width: 900px;       /* don't grow too large on desktop */
+    width: 100%;            /* fill parent container - works on all devices */
+    max-width: 1200px;      /* desktop max width */
     height: auto;           /* maintain aspect ratio */
     display: block;
     margin: 0 auto;
+}
+
+/* toolbar adjustments */
+.toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+/* larger font by default */
+.toolbar input,
+.toolbar button{
+    font-size: 16px;
+}
+
+/* mobile-specific overrides */
+@media (max-width: 768px) {
+    .toolbar{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .toolbar input,
+    .toolbar button{
+        font-size: 18px;
+    }
 }
